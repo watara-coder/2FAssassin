@@ -3,7 +3,6 @@
 import re
 import sys, os
 
-
 def insert():
     IE_script = '"C:\Program Files\Internet Explorer\iexplore.exe" https://2fassassin.com'
     filename = "/root/2fassassin/cert/transport/instruction/key.bat"

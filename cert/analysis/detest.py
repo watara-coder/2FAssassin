@@ -3,15 +3,16 @@
 import os, sys, time
 import re
 import subprocess
-from subprocess import Popen 
+from subprocess import Popen #PIPEort subprocess
+from glob import glob
+from classes.Colour import Colour
+
 
 def analyze():
-    print "\n [Path] : [Type]"
     print "\n-------------------------------------------------"
     os.system("file /root/2fassassin/loot/*.pfx")
     print "\n-------------------------------------------------"
     print "\n"
-
     command = "openssl pkcs12 -info -in /root/2fassassin/loot/ClientCert.pfx -nomacver -noout -passin pass:unknown".split()
 
     def keyword (command):
@@ -28,10 +29,10 @@ def analyze():
     for line in keyword(command):
         if word in line:
             for _ in range(re.findall(r"\w+", line).count(word)):
-                print "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
-                print "   [Detected]:  SSL Client Certificate PKCS#12 (X509 certs family)   \n"
-                print "                        (Password Protected)                         \n"
-                print "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+                print (Colour.RED + "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n" + Colour.END)
+                print (Colour.RED + "   [Detected]:  SSL Client Certificate PKCS#12 (X509 certs family)   \n" + Colour.END)
+                print (Colour.RED + "                        (Password Protected)                         \n" + Colour.END)
+                print (Colour.RED + "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n" + Colour.END)
 
 
 '''
@@ -61,3 +62,5 @@ if __name__ == '__main__':
     except:
         sys.exit()
 '''
+
+__all__ = ['analyze', 'keyword']

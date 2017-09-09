@@ -6,7 +6,7 @@ userID = 'client'
 password = 'password'
 client_machine_name = 'kali'
 
-server_name = 'box'
+server_name = 'testbox'
 server_ip = '172.16.173.180'
 
 domain_name = ''

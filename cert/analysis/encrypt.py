@@ -14,27 +14,10 @@ def run_command(command):
     stderr=subprocess.STDOUT)
     return iter(p.stdout.readline, b'')
 
-
-
- '''
-floppy = os.
-system("ls /root/2fassassin/loot/*.pfx")
-
-command = "openssl pkcs12 -info -in"
-command += " "
-command += +floppy
-command += " "
-command += "-nomacver -noout -passin pass:unknown".split()
-'''
-
 command = "openssl pkcs12 -info -in /root/2fassassin/loot/ClientCert.pfx -nomacver -noout -passin pass:unknown".split()
-
 
 for line in run_command(command):
     print(line)
-
-
-
 word = "Encrypted"
 for line in run_command(command):
     if word in line:
