@@ -27,7 +27,6 @@ cd 2fassassin
 
 root@kali:~/2fassassin# python assassin.py -h
 
-
  ___ ___ _                      _
 |_  ) __/_\   ______ __ _ _____(_)_ _
  / /| _/ _ \ (_-<_-</ _` (_-<_-< | '  \+v2
@@ -36,9 +35,11 @@ root@kali:~/2fassassin# python assassin.py -h
 
 usage: assassin.py [-h] [--target TARGET] [--silent] [--scan SCAN]
                    [--check CHECK] [--cert CERT] [--filetype FILETYPE]
-                   [--user USER] [--secret SECRET] [--host HOST] [--mode MODE]
-                   [--auto AUTO] [--post POST] [--db DB] [--key KEY]
-                   [--log LOG]
+                   [--user USER] [--user2 USER2] [--secret SECRET]
+                   [--spoof SPOOF] [--gateway GATEWAY] [--mitm MITM]
+                   [--host HOST] [--mode MODE] [--auto AUTO] [--post POST]
+                   [--db DB] [--key KEY] [--log LOG] [--tunnel TUNNEL]
+                   [--chain CHAIN]
 
 Bypass 2FA - SMS, Voice, SSH
 
@@ -51,7 +52,11 @@ optional arguments:
   --cert CERT          Certificate management
   --filetype FILETYPE  Specify file *.extension
   --user USER          username
+  --user2 USER2        username2
   --secret SECRET      password
+  --spoof SPOOF        spoof
+  --gateway GATEWAY    gateway
+  --mitm MITM          mitm
   --host HOST          server ip
   --mode MODE          mode
   --auto AUTO          auto mode for automation
@@ -59,7 +64,9 @@ optional arguments:
   --db DB              Manage your trophies.
   --key KEY            keys management
   --log LOG            View logs
-root@kali:~/2fassassin#
+  --tunnel TUNNEL      Create ssh tunnel with looted private keys
+  --chain CHAIN        The amount of connecting chain
+
 
 
 
