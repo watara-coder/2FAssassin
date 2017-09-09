@@ -13,15 +13,6 @@
 - Propagates the compromise starting from a single machine to the entire networks via looted private keys.
 
 
-## Installing ##
-
-- Install python on Kali Linux, then run:
-pip install 2fassassin
-cd /root/2fassassin
-OR
-git clone https://github.com/maxwellkoh/2FAssassin.git
-cd 2fassassin
-
 
 ## Features ##
 
