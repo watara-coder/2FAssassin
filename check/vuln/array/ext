@@ -1,0 +1,4 @@
+run post/multi/gather/ssh_creds
+set session 1
+run
+exit -y

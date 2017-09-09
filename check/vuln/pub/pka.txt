@@ -1,0 +1,7 @@
+address,mac,name,os_name,os_flavor,os_sp,purpose,info,comments
+"172.16.173.155","","ROOT-C59B47BD67","Windows XP","","SP3","client","",""
+"172.16.173.187","00:0C:29:5A:D0:8B","","Linux","","2.6.X","server","",""
+"172.16.173.191","00:0C:29:F5:AB:3A","","Linux","","2.6.X","server","",""
+"172.16.173.193","","WIN-4KTML9QTDL3","Windows 2012","","","server","",""
+"172.16.173.194","","WIN-4KTML9QTDL3","Windows 2012","","","server","",""
+"172.16.173.196","00:0C:29:AB:28:BF","172.16.173.196"," (Linux 3.14.1-pentesterlab)","","","server","",""

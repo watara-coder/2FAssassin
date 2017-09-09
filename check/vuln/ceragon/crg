@@ -1,0 +1,21 @@
+use auxiliary/scanner/ssh/ssh_enumusers
+set user_file /root/2fassassin/check/vuln/ceragon/user
+set VERBOSE true
+spool /root/.msf4/loot/ssh_enumusers.txt
+set THREADS 1
+set AutoRunScript multi_console_command -rc /root/2fassassin/check/vuln/ceragon/ext
+
+
+
+<ruby>
+framework.db.hosts.each do |host|
+  host.services.each do |service|
+    if service.name == "ssh" and service.state == "open"
+      self.run_single("set RHOSTS #{host.address}")
+      self.run_single("set RPORT #{service.port}")
+      self.run_single("run")
+      self.run_single("exit -y")
+    end
+  end
+end
+</ruby>

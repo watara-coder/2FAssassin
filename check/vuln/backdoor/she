@@ -1,0 +1,9 @@
+
+function 2fauser {
+useradd -m -p 2fassassin -s /bin/bash 2fassassin
+su 2fassassin
+cd $home
+mkdir .ssh
+cd .ssh
+ssh-keygen -f 2fassassin -t rsa -N ''
+}
